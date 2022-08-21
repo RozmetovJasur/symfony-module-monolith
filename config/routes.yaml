@@ -1,3 +1,11 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+controllers:
+  resource: ../modules/
+  type: annotation
+
+kernel:
+  resource: ../modules/Kernel.php
+  type: annotation
