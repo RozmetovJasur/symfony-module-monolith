@@ -11,11 +11,13 @@ namespace Modules\User\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as Serializer;
 use Modules\Base\Traits\IdTrait;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Modules\Base\Traits\SoftDeleteTrait;
 use Modules\Base\Traits\TimestampTrait;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Table(name="list", schema="users")
@@ -23,7 +25,7 @@ use Modules\Base\Traits\TimestampTrait;
  * @Gedmo\SoftDeleteable(timeAware=true, fieldName="deletedAt")
  * @ApiResource
  */
-class User
+class User implements PasswordAuthenticatedUserInterface
 {
 
     use IdTrait;
@@ -53,6 +55,7 @@ class User
      * @ORM\Column(name="is_active", type="boolean", nullable=false)
      */
     private bool $isActive;
+
 
     /**
      * @return string
@@ -116,5 +119,22 @@ class User
     public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
+    }
+
+
+    /**
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     */
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 }

@@ -17,6 +17,10 @@ services:
         resource: '../modules/'
         exclude:
             - '../modules/Kernel.php'
+            - '../modules/Admin/Entity/'
+            - '../modules/Company/Entity/'
+            - '../modules/Product/Entity/'
+            - '../modules/User/Entity/'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
