@@ -28,3 +28,11 @@ services:
     Modules\Admin\Security\AdminAuthenticator:
         arguments:
             - '@Symfony\Component\Routing\Generator\UrlGeneratorInterface'
+
+    Modules\Product\Rabbit\ProductConsumer:
+        arguments:
+            - '@Doctrine\ORM\EntityManagerInterface'
+            - '@logger'
+
+    Modules\Product\Rabbit\ProductProducer: '@old_sound_rabbit_mq.messaging_producer'
+

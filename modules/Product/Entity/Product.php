@@ -39,6 +39,7 @@ class Product
     /**
      * @var bool
      * @ORM\Column(name="is_active", type="boolean", options={"default"=true})
+     * @ORM\OneToMany()
      */
     private bool $is_active = true;
 
